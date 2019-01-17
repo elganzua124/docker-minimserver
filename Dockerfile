@@ -2,7 +2,8 @@ FROM arm32v7/openjdk:8-jre
 
 ARG url=http://jminim.com/cada/MinimServer-0.8.5.2-linux-armhf.tar.gz
 
-RUN wget -O /opt/MinimServer.tar.gz ${url} && \
+RUN  apt update && apt upgrade && apt install ffmpeg && \
+		wget -O /opt/MinimServer.tar.gz ${url} && \
 		cd /opt && \
 		tar xf MinimServer.tar.gz && \
 		rm MinimServer.tar.gz
