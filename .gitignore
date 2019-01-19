@@ -4,5 +4,4 @@ config/
 docker_run.sh
 
 data/*
-media/*
 !.gitkeep
