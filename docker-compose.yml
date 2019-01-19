@@ -2,15 +2,14 @@
 version: '2'
 services:
   dlna-server:
-    restart: 'no'
+    restart: unless-stopped
     build:
       context: ./
       args:
-        url: ${url}
-    image: ${REGISTRY}/${NAME}:${MINIM_VER}
+        URL: ${url}
+        FFMPEG_URL: ${ffmpeg_url}
+    image: ${NAME}:${MINIM_VER}
     network_mode: "host"
     volumes:
     - "${PWD}/data:/opt/minimserver/data:rw"
-    - "${PWD}/media:/media:ro"
-    # for test
-    #command: /bin/sh -c 'while true; do echo dummy; sleep 600; done'
+    - "${media_dir}:/media:ro"
