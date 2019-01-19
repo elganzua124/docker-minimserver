@@ -1,15 +1,18 @@
 FROM arm32v7/openjdk:8-jre
 
-ARG url=http://jminim.com/cada/MinimServer-0.8.5.2-linux-armhf.tar.gz
+ARG URL
 
-RUN  apt update && apt upgrade && apt install ffmpeg && \
-		wget -O /opt/MinimServer.tar.gz ${url} && \
-		cd /opt && \
-		tar xf MinimServer.tar.gz && \
-		rm MinimServer.tar.gz
+ARG FFMPEG_URL
 
-COPY ./minimserver.config /opt/minimserver/data/minimserver.config
+RUN wget -O /opt/MinimServer.tar.gz ${URL} && \
+                cd /opt && \
+                tar xf MinimServer.tar.gz && \
+                rm MinimServer.tar.gz && \
+                cd minimserver/opt/bin && \
+                mkdir tmp && \
+                wget -O tmp/ffmpeg.tar.xz ${FFMPEG_URL} && \
+                tar xf tmp/ffmpeg.tar.xz --strip 1 -C tmp && \
+                mv tmp/ffmpeg . && \
+                rm -rf tmp
 
 EXPOSE 9790 9791
-
-ENTRYPOINT [ "/opt/minimserver/bin/startc" ]
