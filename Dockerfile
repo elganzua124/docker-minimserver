@@ -18,3 +18,5 @@ RUN wget -O /opt/MinimServer.tar.gz ${URL} && \
 COPY ./minimserver.config /opt/minimserver/data/minimserver.config
 
 EXPOSE 9790 9791
+
+ENTRYPOINT [ "/opt/minimserver/bin/startc" ]
