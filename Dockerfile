@@ -15,4 +15,6 @@ RUN wget -O /opt/MinimServer.tar.gz ${URL} && \
                 mv tmp/ffmpeg . && \
                 rm -rf tmp
 
+COPY ./minimserver.config /opt/minimserver/data/minimserver.config
+
 EXPOSE 9790 9791
