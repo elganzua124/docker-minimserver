@@ -1,0 +1,2 @@
+prop tagCustom=AlbumArtist.displayRole={artist}, Composer.displayRole={artist}
+prop contentDir=/media

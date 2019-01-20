@@ -1,8 +1,9 @@
 ---
 version: '2'
+
 services:
   dlna-server:
-    restart: unless-stopped
+    restart: always
     build:
       context: ./
       args:
@@ -11,5 +12,6 @@ services:
     image: ${NAME}:${MINIM_VER}
     network_mode: "host"
     volumes:
-    - "${PWD}/data:/opt/minimserver/data:rw"
     - "${media_dir}:/media:ro"
+    - "./files:/mnt:rw"
+    - "./data:/opt/minimserver/data:rw"
